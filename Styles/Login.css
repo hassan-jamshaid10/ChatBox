@@ -9,12 +9,51 @@ body {
     height: 100vh;
     background: linear-gradient(135deg, #e7e9fc, #f1f5ff);
   }
+  .header-container {
+    padding: 6rem;
+    text-align: left;
+     
+  }
+  
+  .typing-effect {
+    font-size: 3.5rem;
+    font-weight: bold;
+    background: linear-gradient(90deg, #6a11cb, #2575fc); 
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent; 
+    border-right: 2px solid #007bff; /* Creates the blinking cursor effect */
+    white-space: nowrap; /* Prevents text wrapping */
+    overflow: hidden; /* Ensures text is hidden during the animation */
+    display: inline-block;
+    animation: typing 4s steps(30, end), blink-caret 0.5s step-end infinite;
+  }
+  
+  /* Typing animation */
+  @keyframes typing {
+    from {
+      width: 0; /* Text starts hidden */
+    }
+    to {
+      width: 100%; /* Text is fully visible */
+    }
+  }
+  
+  /* Blinking caret animation */
+  @keyframes blink-caret {
+    from, to {
+      border-color: transparent;
+    }
+    50% {
+      border-color: #ffffff;
+    }
+  }
   
   .login-container {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end; /* Ensures the flexbox stays aligned to the right */
     align-items: center;
     height: 100%;
+    width: 100%;
   }
   
   .login-box {
@@ -25,6 +64,7 @@ body {
     height:auto;
     width: 300px; /* Increased width */
     text-align: center;
+    margin-right: 16rem; 
   }
   
   
@@ -53,14 +93,16 @@ body {
     width: 100%;
     padding: 0.8rem;
     font-size: 0.9rem;
-    border: 1px solid #000000;
+    border: 1px solid #ffffff;
+    background: linear-gradient(90deg, #6a11cb, #2575fc);
+    color:white;
     border-radius: 5px;
     outline: none;
     box-sizing: border-box;
   }
   
   .form-group input:focus {
-    border-color: #007bff;
+    border-color: #ffffff;
   }
   
   .password-container {
