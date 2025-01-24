@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calling Interface</title>
+  <link rel="stylesheet" href="../Styles/Call.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">Chatbox App</div>
+        <nav class="navbar">
+          <ul>
+        <li><a href="../Pages/Dashboard.html"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="../Pages/Chat.html"><i class="fas fa-comment-alt"></i> Chat</a></li>
+        <li><a href="../Pages/Call.html"><i class="fas fa-phone"></i> Call</a></li>
+        <li><a href="#"><i class="fas fa-users"></i> Group Chat</a></li>
+          </ul>
+        </nav>
+        <div class="user-menu">
+          <button class="user-button">
+            <i class="fas fa-user"></i> User
+          </button>
+          <div class="dropdown">
+            <a href="#">Profile</a>
+            <a href="#">Logout</a>
+          </div>
+        </div>
+      </header>
+  <div class="call-interface">
+    <!-- <div class="call-header">
+      <h2 id="call-status">No Active Call</h2>
+    </div> -->
+    <div class="call-container">
+      <div class="contacts-section">
+        <h3>Contacts</h3>
+        <div class="contact">
+          <img src="https://via.placeholder.com/50" alt="John">
+          <span>John Doe</span>
+          <button class="call-button" onclick="startCall('John Doe')">
+            <i class="fas fa-phone"></i>
+          </button>
+        </div>
+        <div class="contact">
+          <img src="https://via.placeholder.com/50" alt="Jane">
+          <span>Jane Smith</span>
+          <button class="call-button" onclick="startCall('Jane Smith')">
+            <i class="fas fa-phone"></i>
+          </button>
+        </div>
+      </div>
+      <div class="call-section" id="call-area">
+        <h3 id="caller-name">Select a Contact to Start Calling</h3>
+        <div class="call-controls">
+          <button class="control-button" id="mute-button" onclick="toggleMute()">
+            <i class="fas fa-microphone"></i>
+          </button>
+          <button class="control-button" id="video-button" onclick="toggleVideo()">
+            <i class="fas fa-video"></i>
+          </button>
+          <button class="control-button end-call" onclick="endCall()">End Call</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="../Scripts/CallScript.js"></script>
+</html>

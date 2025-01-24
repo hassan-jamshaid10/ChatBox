@@ -1,0 +1,151 @@
+body {
+    font-family: Arial, sans-serif;
+    color: white;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #e7e9fc, #f1f5ff);
+}
+.header-container {
+    padding: 6rem;
+    text-align: left;
+}
+
+.typing-effect {
+    font-size: 3.5rem;
+    font-weight: bold;
+    background: linear-gradient(90deg, #6a11cb, #2575fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    border-right: 2px solid #007bff;
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+    animation: typing 4s steps(30, end), blink-caret 0.5s step-end infinite;
+}
+
+/* Typing animation */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+/* Blinking caret animation */
+@keyframes blink-caret {
+    from,
+    to {
+        border-color: transparent;
+    }
+    50% {
+        border-color: #ffffff;
+    }
+}
+
+.signup-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.signup-box {
+    background: linear-gradient(90deg, #6a11cb, #2575fc);
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    height:auto;
+    text-align: center;
+    margin-right: 12rem;
+}
+
+.signup-box h2 {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    color: #ffffff;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+}
+
+.form-group span {
+    color: red;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 0.9rem;
+    border: 1px solid #ffffff;
+    background: linear-gradient(90deg, #6a11cb, #2575fc);
+    color: white;
+    border-radius: 5px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.form-group input:focus {
+    border-color: #ffffff;
+}
+
+.password-container {
+    position: relative;
+}
+
+.password-container .toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.signup-button {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    background: linear-gradient(90deg, #6a11cb, #2575fc);
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.login-option {
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.login-option p {
+    margin: 0;
+    color: #ffffff;
+}
+
+.login-option a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.login-option a:hover {
+    text-decoration: underline;
+}
