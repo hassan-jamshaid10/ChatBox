@@ -14,35 +14,36 @@
   <div class="signup-container">
     <div class="signup-box">
       <h2>Signup</h2>
-      <form>
+      <form action="../PHP/Signup.php" method="POST">
         <div class="form-group">
           <label for="username">Username <span>*</span></label>
-          <input type="text" id="username" placeholder="Username" required>
+          <input type="text" id="username" name="username" placeholder="Username" required>
         </div>
         <div class="form-group">
           <label for="email">Email <span>*</span></label>
-          <input type="email" id="email" placeholder="Email" required>
+          <input type="email" id="email" name="email" placeholder="Email" required>
         </div>
         <div class="form-group">
           <label for="password">Password <span>*</span></label>
           <div class="password-container">
-            <input type="password" id="password" placeholder="Password" required>
+            <input type="password" id="password" name="password" placeholder="Password" required>
             <button type="button" class="toggle-password">👁️</button>
           </div>
         </div>
         <div class="form-group">
           <label for="confirm-password">Confirm Password <span>*</span></label>
           <div class="password-container">
-            <input type="password" id="confirm-password" placeholder="Confirm Password" required>
+            <input type="password" id="confirm-password" name="confirm_password" placeholder="Confirm Password" required>
             <button type="button" class="toggle-password">👁️</button>
           </div>
         </div>
         <button type="submit" class="signup-button">Signup</button>
-      </form>
+      </form>      
       <div class="login-option">
         <p>Already have an account? <a href="../Pages/Login.html" class="login-link">Login</a></p>
       </div>
     </div>
   </div>
+  <script src="../Scripts/Signup.js"></script>
 </body>
 </html>
