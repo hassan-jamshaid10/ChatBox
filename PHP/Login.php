@@ -1,7 +1,6 @@
 <?php
 include '../Config/db.php';
 
-// Start session
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -18,13 +17,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->execute();
     $stmt->store_result();
 
-    // Check if the user exists
     if ($stmt->num_rows > 0) {
         $stmt->bind_result($user_id, $user_name, $email, $created_at, $hashed_password);
         $stmt->fetch();
 
         if (password_verify($password, $hashed_password)) {
-            // Store the user data in session
             $_SESSION['user_id'] = $user_id;
             $_SESSION['profile_data'] = [
                 'username' => $user_name,
