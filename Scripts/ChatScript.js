@@ -1,81 +1,62 @@
-// ChatScript.js
-
-// Select DOM elements
-const chatInput = document.querySelector('.chat-input input');
-const sendButton = document.querySelector('.send-button');
-const emojiButton = document.querySelector('.emoji-button');
-const attachButton = document.querySelector('.attach-button');
-const messagesContainer = document.querySelector('.messages');
-const userButton = document.querySelector('.user-button');
-const dropdown = document.querySelector('.dropdown');
-const chatItems = document.querySelectorAll('.chat-item');
-const searchInput = document.querySelector('.search-input');
-
-// Add event listener for sending a message
-sendButton.addEventListener('click', sendMessage);
-
-// Handle "Enter" key press for sending messages
-chatInput.addEventListener('keypress', (event) => {
-  if (event.key === 'Enter') {
-    sendMessage();
-  }
+// Load users and messages on page load
+document.addEventListener("DOMContentLoaded", () => {
+  loadUsers();
+  loadMessages();
 });
 
-// Function to send a message
-function sendMessage() {
-  const messageText = chatInput.value.trim();
-
-  if (messageText === '') return;
-
-  // Create and append the message element
-  const message = document.createElement('div');
-  message.classList.add('message', 'sent');
-  message.innerHTML = `<p>${messageText}</p>`;
-  messagesContainer.appendChild(message);
-
-  // Clear the input field and scroll to the latest message
-  chatInput.value = '';
-  messagesContainer.scrollTop = messagesContainer.scrollHeight;
+// Fetch users from the database
+function loadUsers() {
+  fetch("../PHP/fetch_users.php")
+    .then((response) => response.json())
+    .then((users) => {
+      const usersList = document.getElementById("usersList");
+      usersList.innerHTML = users
+        .map(
+          (user) => `
+        <div class="chat-item" onclick="loadMessages(${user.id})">
+          <img src="user-avatar.png" alt="User Avatar">
+          <div class="chat-info">
+            <h3>${user.username}</h3>
+          </div>
+        </div>`
+        )
+        .join("");
+    });
 }
 
-// Add event listener for emoji button
-emojiButton.addEventListener('click', () => {
-  alert('Emoji picker coming soon!');
-});
+// Fetch messages for a specific user
+function loadMessages(userId = 1) {
+  fetch(`../PHP/fetch_messages.php?userId=${userId}`)
+    .then((response) => response.json())
+    .then((messages) => {
+      const chatMessages = document.getElementById("chatMessages");
+      chatMessages.innerHTML = messages
+        .map(
+          (msg) => `
+        <div class="message ${msg.sender === "me" ? "sent" : "received"}">
+          <p>${msg.message}</p>
+        </div>`
+        )
+        .join("");
+    });
+}
 
-// Add event listener for attach button
-attachButton.addEventListener('click', () => {
-  alert('Attachment feature coming soon!');
-});
-
-// Toggle user dropdown menu
-userButton.addEventListener('click', () => {
-  dropdown.classList.toggle('active');
-});
-
-// Close dropdown if clicked outside
-window.addEventListener('click', (event) => {
-  if (!userButton.contains(event.target) && !dropdown.contains(event.target)) {
-    dropdown.classList.remove('active');
+// Send a message
+function sendMessage() {
+  const messageInput = document.getElementById("messageInput");
+  const message = messageInput.value.trim();
+  if (message) {
+    fetch("../PHP/send_message.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userId: 1, message }),
+    })
+      .then((response) => response.json())
+      .then((status) => {
+        if (status.success) {
+          loadMessages(1); // Reload messages
+          messageInput.value = ""; // Clear input
+        }
+      });
   }
-});
-
-// Add click functionality to chat items
-chatItems.forEach((chatItem) => {
-  chatItem.addEventListener('click', () => {
-    alert(`Opening chat with ${chatItem.querySelector('h3').textContent}`);
-  });
-});
-
-// Filter chats based on search input
-searchInput.addEventListener('input', () => {
-  const query = searchInput.value.toLowerCase();
-  chatItems.forEach((chatItem) => {
-    const chatName = chatItem.querySelector('h3').textContent.toLowerCase();
-    if (chatName.includes(query)) {
-      chatItem.style.display = 'flex';
-    } else {
-      chatItem.style.display = 'none';
-    }
-  });
-});
+}

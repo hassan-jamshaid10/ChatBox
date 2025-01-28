@@ -4,20 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chat Page</title>
+  <link rel="preload" href="../Styles/Chat.css" as="style" type="text/css" />
   <link rel="stylesheet" href="../Styles/Chat.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
   <header class="header">
     <div class="logo">Chatbox App</div>
-    <nav class="navbar">
-      <ul>
-        <li><a href="../Pages/Dashboard.html"><i class="fas fa-home"></i> Home</a></li>
-        <li><a href="../Pages/Chat.html"><i class="fas fa-comment-alt"></i> Chat</a></li>
-        <li><a href="../Pages/Call.html"><i class="fas fa-phone"></i> Call</a></li>
-        <li><a href="#"><i class="fas fa-users"></i> Group Chat</a></li>
-      </ul>
-    </nav>
     <div class="user-menu">
       <button class="user-button">
         <i class="fas fa-user"></i> User
@@ -33,22 +26,10 @@
   <div class="chat-container">
     <!-- Left Sidebar: Chats -->
     <aside class="chat-list">
-        <input type="text" class="search-input" placeholder="Search chats...">
-
+      <input type="text" class="search-input" placeholder="Search chats..." id="searchChats">
       <h2>Chats</h2>
-      <div class="chat-item">
-        <img src="user-avatar.png" alt="User Avatar">
-        <div class="chat-info">
-          <h3>User 1</h3>
-          <p>Last message...</p>
-        </div>
-      </div>
-      <div class="chat-item">
-        <img src="user-avatar.png" alt="User Avatar">
-        <div class="chat-info">
-          <h3>User 2</h3>
-          <p>Last message...</p>
-        </div>
+      <div id="usersList">
+        <!-- Dynamic user list -->
       </div>
     </aside>
 
@@ -60,21 +41,16 @@
       </div>
 
       <!-- Chat Messages -->
-      <div class="messages">
-        <div class="message received">
-          <p>Hi there!</p>
-        </div>
-        <div class="message sent">
-          <p>Hello! How are you?</p>
-        </div>
+      <div class="messages" id="chatMessages">
+        <!-- Dynamic chat messages -->
       </div>
 
       <!-- Input Area -->
       <div class="chat-input">
         <button class="emoji-button"><i class="fas fa-smile"></i></button>
-        <input type="text" placeholder="Type your message here..." />
+        <input type="text" id="messageInput" placeholder="Type your message here..." />
         <button class="attach-button"><i class="fas fa-paperclip"></i></button>
-        <button class="send-button"><i class="fas fa-paper-plane"></i></button>
+        <button class="send-button" onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
       </div>
     </main>
   </div>

@@ -143,9 +143,35 @@ body {
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    background-color: #ddd;
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJdDSog8CcBT8E8_ne62Nd60MaciKWXYHIWQ&s');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     margin: 0 auto 1rem;
 }
+
+.testimonial-image2 {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1mkCHMPcpcsWQ8p5LxoY_ubaYHdFiu7p7CA&s');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0 auto 1rem;
+}
+
+.testimonial-image3 {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIaqO0YtiivCNKbVLILmGEyktaHso4DKh2Yw&s');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0 auto 1rem;
+}
+
 
 /* Footer */
 .footer {
@@ -177,6 +203,42 @@ body {
     width: 30px;
     height: 30px;
     border-radius: 50%;
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4Sjxtqvj727PVGUCvytCcMmp0EzVc9TQfFw&s");
+    background-size: cover;
+    background-position: center;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.social-logo2 {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStWO3B15FAMXi9vTvsGgXIt7z2G96y6BVL2Q&s");
+    background-size: cover;
+    background-position: center;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.social-logo3 {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-image: url("https://static-00.iconduck.com/assets.00/linkedin-round-icon-2048x2048-jufaif8u.png");
+    background-size: cover;
+    background-position: center;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.social-logo4 {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbtfCWR45fy6OYoNqiOIsVWIYITpuk1sSyVg&s");
+    background-size: cover;
+    background-position: center;
     background-color: white;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
@@ -187,3 +249,23 @@ body {
     color: #e0e0e0;
 }
 
+/* Media Queries for Responsiveness */
+@media screen and (max-width: 768px) {
+    /* Stack the feature cards vertically */
+    .features-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Stack testimonial cards vertically */
+    .testimonials-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Stack social logos vertically */
+    .footer-social-media {
+        flex-direction: column;
+        align-items: center;
+    }
+}

@@ -12,8 +12,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit;
     }
 
-    // Use $db instead of $conn here
-    $stmt = $db->prepare("SELECT id, username, email, created_at, password FROM users WHERE username = ?");
+    // Use $conn instead of $db here
+    $stmt = $conn->prepare("SELECT id, username, email, created_at, password FROM users WHERE username = ?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
     $stmt->store_result();
@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Use sessionStorage in JavaScript to store profile data
             echo "<script>
                     sessionStorage.setItem('profile_data', JSON.stringify(" . json_encode($_SESSION['profile_data']) . "));
-                    window.location.href = '../Pages/Dashboard.html'; // Redirect to dashboard page
+                    window.location.href = '../PHP/Chat.php'; // Redirect to dashboard page
                   </script>";
             exit;
         } else {
@@ -45,6 +45,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     $stmt->close();
-    $db->close();
+    $conn->close();
 }
 ?>
