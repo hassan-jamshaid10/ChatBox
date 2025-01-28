@@ -12,7 +12,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit;
     }
 
-    $stmt = $conn->prepare("SELECT id, username, email, created_at, password FROM users WHERE username = ?");
+    // Use $db instead of $conn here
+    $stmt = $db->prepare("SELECT id, username, email, created_at, password FROM users WHERE username = ?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
     $stmt->store_result();
@@ -22,6 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->fetch();
 
         if (password_verify($password, $hashed_password)) {
+            // Store user session data
             $_SESSION['user_id'] = $user_id;
             $_SESSION['profile_data'] = [
                 'username' => $user_name,
@@ -29,9 +31,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 'created_at' => $created_at
             ];
 
+            // Use sessionStorage in JavaScript to store profile data
             echo "<script>
                     sessionStorage.setItem('profile_data', JSON.stringify(" . json_encode($_SESSION['profile_data']) . "));
-                    window.location.href = '../Pages/Dashboard.html'; // Redirect to profile page
+                    window.location.href = '../Pages/Dashboard.html'; // Redirect to dashboard page
                   </script>";
             exit;
         } else {
@@ -42,6 +45,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     $stmt->close();
-    $conn->close();
+    $db->close();
 }
 ?>
