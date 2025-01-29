@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    color:white;
+    color: white;
     margin: 0;
     padding: 0;
     display: flex;
@@ -8,108 +8,106 @@ body {
     align-items: center;
     height: 100vh;
     background: linear-gradient(135deg, #e7e9fc, #f1f5ff);
-  }
-  .header-container {
+}
+
+.header-container {
     padding: 6rem;
     text-align: left;
-     
-  }
-  
-  .typing-effect {
+}
+
+.typing-effect {
     font-size: 3.5rem;
     font-weight: bold;
-    background: linear-gradient(90deg, #6a11cb, #2575fc); 
-    -webkit-background-clip: text; 
-    -webkit-text-fill-color: transparent; 
-    border-right: 2px solid #007bff; /* Creates the blinking cursor effect */
-    white-space: nowrap; /* Prevents text wrapping */
-    overflow: hidden; /* Ensures text is hidden during the animation */
+    background: linear-gradient(90deg, #6a11cb, #2575fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    border-right: 2px solid #007bff;
+    white-space: nowrap;
+    overflow: hidden;
     display: inline-block;
     animation: typing 4s steps(30, end), blink-caret 0.5s step-end infinite;
-  }
-  
-  /* Typing animation */
-  @keyframes typing {
+}
+
+@keyframes typing {
     from {
-      width: 0; /* Text starts hidden */
+        width: 0;
     }
     to {
-      width: 100%; /* Text is fully visible */
+        width: 100%;
     }
-  }
-  
-  /* Blinking caret animation */
-  @keyframes blink-caret {
-    from, to {
-      border-color: transparent;
+}
+
+@keyframes blink-caret {
+    from,
+    to {
+        border-color: transparent;
     }
     50% {
-      border-color: #ffffff;
+        border-color: #ffffff;
     }
-  }
-  
-  .login-container {
+}
+
+.login-container {
     display: flex;
-    justify-content: flex-end; /* Ensures the flexbox stays aligned to the right */
+    justify-content: flex-end;
     align-items: center;
     height: 100%;
     width: 100%;
-  }
-  
-  .login-box {
+}
+
+.login-box {
     background: linear-gradient(90deg, #6a11cb, #2575fc);
-    padding: 3rem; /* Increased padding for a larger look */
+    padding: 3rem;
     border-radius: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    height:auto;
-    width: 300px; /* Increased width */
+    height: auto;
+    width: 300px;
     text-align: center;
-    margin-right: 16rem; 
-  }
-  
-  
-  .login-box h2 {
+    margin-right: 16rem;
+}
+
+.login-box h2 {
     margin-bottom: 1.5rem;
     font-size: 1.5rem;
     color: #ffffff;
-  }
-  
-  .form-group {
+}
+
+.form-group {
     margin-bottom: 1rem;
     text-align: left;
-  }
-  
-  .form-group label {
+}
+
+.form-group label {
     display: block;
     font-size: 0.9rem;
     margin-bottom: 0.3rem;
-  }
-  
-  .form-group span {
+}
+
+.form-group span {
     color: red;
-  }
-  
-  .form-group input {
+}
+
+.form-group input {
     width: 100%;
     padding: 0.8rem;
     font-size: 0.9rem;
     border: 1px solid #ffffff;
     background: linear-gradient(90deg, #6a11cb, #2575fc);
-    color:white;
+    color: white;
     border-radius: 5px;
     outline: none;
     box-sizing: border-box;
-  }
-  
-  .form-group input:focus {
+}
+
+.form-group input:focus {
     border-color: #ffffff;
-  }
-  
-  .password-container {
+}
+
+.password-container {
     position: relative;
-  }
-  
-  .password-container .toggle-password {
+}
+
+.password-container .toggle-password {
     position: absolute;
     top: 50%;
     right: 10px;
@@ -117,25 +115,25 @@ body {
     background: none;
     border: none;
     cursor: pointer;
-  }
-  
-  .links {
+}
+
+.links {
     display: flex;
     justify-content: space-between;
     font-size: 0.9rem;
     margin-bottom: 1rem;
-  }
-  
-  .links a {
+}
+
+.links a {
     text-decoration: none;
     color: #ffffff;
-  }
-  
-  .links a:hover {
+}
+
+.links a:hover {
     text-decoration: underline;
-  }
-  
-  .login-button {
+}
+
+.login-button {
     width: 100%;
     padding: 0.8rem;
     font-size: 1rem;
@@ -144,5 +142,86 @@ body {
     background: linear-gradient(90deg, #6a11cb, #2575fc);
     color: #ffffff;
     cursor: pointer;
-  }
-  
+}
+
+
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+        height: auto;
+        padding: 2rem;
+    }
+
+    .header-container {
+        padding: 2rem;
+        text-align: center;
+    }
+
+    .login-container {
+        justify-content: center;
+        align-items: flex-start;
+        margin-top: 2rem;
+    }
+
+    .login-box {
+        width: 100%;
+        margin-right: 0;
+        padding: 2rem;
+    }
+
+    .login-box h2 {
+        font-size: 1.2rem;
+    }
+
+    .form-group input {
+        font-size: 1rem;
+        padding: 1rem;
+    }
+
+    .links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .login-button {
+        font-size: 1.1rem;
+    }
+}
+
+
+@media (max-width: 480px) {
+    body {
+        padding: 1rem;
+    }
+
+    .header-container {
+        padding: 1rem;
+    }
+
+    .login-box {
+        width: 90%;
+        margin-right: 0;
+        padding: 1.5rem;
+    }
+
+    .login-box h2 {
+        font-size: 1rem;
+    }
+
+    .form-group input {
+        font-size: 1rem;
+        padding: 1rem;
+    }
+
+    .links {
+        font-size: 0.8rem;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 1rem;
+    }
+
+    .login-button {
+        font-size: 1rem;
+        padding: 1rem;
+    }
+}

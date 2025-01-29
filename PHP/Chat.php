@@ -12,11 +12,8 @@
 session_start();
 $conn = new mysqli("localhost", "root", "", "ChatBox");
 if ($conn->connect_error) die("Connection failed: " . $conn->connect_error);
-
-// Fetch all users except the logged-in user
-$loggedInUserId = $_SESSION['user_id']; // Get logged-in user ID from session
+$loggedInUserId = $_SESSION['user_id']; 
 $usersResult = $conn->query("SELECT id, username FROM users WHERE id != $loggedInUserId");
-
 $messagesResult = $conn->query("SELECT message, sender_id, image FROM messages WHERE sender_id = $loggedInUserId OR receiver_id = $loggedInUserId ORDER BY timestamp ASC");
 ?>
 
@@ -33,15 +30,14 @@ $messagesResult = $conn->query("SELECT message, sender_id, image FROM messages W
   </div>
 </header>
 
+
 <div class="chat-container">
-  <!-- Left Sidebar: Chats -->
   <aside class="chat-list">
-    <input type="text" class="search-input" placeholder="Search chats...">
     <h2>Chats</h2>
     <div id="usersList">
       <?php while ($user = $usersResult->fetch_assoc()): ?>
         <div class="chat-item" onclick="openChat(<?php echo $user['id']; ?>)">
-          <img src="user-avatar.png" alt="User Avatar">
+          <img src="../uploads/user.jpg" alt="User Avatar">
           <div class="chat-info">
             <h3><?php echo htmlspecialchars($user['username']); ?></h3>
           </div>
@@ -50,12 +46,12 @@ $messagesResult = $conn->query("SELECT message, sender_id, image FROM messages W
     </div>
   </aside>
 
-  <!-- Chat Window -->
+
+
   <main class="chat-window">
     <div class="chat-header">
-      <button class="call-button"><i class="fas fa-phone-alt"></i></button>
+      <button class="call-button"><i class="fas fa-user"></i></button>
     </div>
-
     <div class="messages" id="messageContainer">
       <?php while ($message = $messagesResult->fetch_assoc()): ?>
         <div class="message <?php echo $message['sender_id'] == $loggedInUserId ? 'sent' : 'received'; ?>">
@@ -71,111 +67,115 @@ $messagesResult = $conn->query("SELECT message, sender_id, image FROM messages W
       <form id="messageForm" method="POST" enctype="multipart/form-data">
         <button class="emoji-button" type="button" onclick="toggleEmojiPicker()"><i class="fas fa-smile"></i></button>
         <input type="text" name="message" id="messageInput" placeholder="Type your message here..." required>
-        
-        <!-- Image attachment -->
         <input type="file" name="image" id="imageInput" accept="image/*" style="display: none;">
         <button class="attach-button" type="button" onclick="document.getElementById('imageInput').click();"><i class="fas fa-paperclip"></i></button>
-
         <button class="send-button" type="submit"><i class="fas fa-paper-plane"></i></button>
         <input type="hidden" name="sender_id" id="sender_id" value="<?php echo $loggedInUserId; ?>">
-        <input type="hidden" name="receiver_id" id="receiver_id" value="2"> <!-- Default to another user for testing -->
+        <input type="hidden" name="receiver_id" id="receiver_id" value="2"> 
       </form>
 
-      <!-- Emoji Picker -->
       <div id="emojiPicker" style="display: none;">
         <button class="emoji" type="button" onclick="insertEmoji('😊')">😊</button>
         <button class="emoji" type="button" onclick="insertEmoji('😂')">😂</button>
         <button class="emoji" type="button" onclick="insertEmoji('😍')">😍</button>
         <button class="emoji" type="button" onclick="insertEmoji('😢')">😢</button>
-        <!-- Add more emojis as needed -->
+        <button class="emoji" type="button" onclick="insertEmoji('😉')">😉</button>
+        <button class="emoji" type="button" onclick="insertEmoji('😎')">😎</button>
+        <button class="emoji" type="button" onclick="insertEmoji('😜')">😜</button>
+        <button class="emoji" type="button" onclick="insertEmoji('😅')">😅</button>
+        <button class="emoji" type="button" onclick="insertEmoji('😆')">😆</button>
+        <button class="emoji" type="button" onclick="insertEmoji('🤔')">🤔</button>
+        <button class="emoji" type="button" onclick="insertEmoji('😡')">😡</button>
+        <button class="emoji" type="button" onclick="insertEmoji('😴')">😴</button>
+        <button class="emoji" type="button" onclick="insertEmoji('🥺')">🥺</button>
+        <button class="emoji" type="button" onclick="insertEmoji('😈')">😈</button>
+        <button class="emoji" type="button" onclick="insertEmoji('🤩')">🤩</button>
+        <button class="emoji" type="button" onclick="insertEmoji('🥳')">🥳</button>
+        <button class="emoji" type="button" onclick="insertEmoji('😇')">😇</button>
+        <button class="emoji" type="button" onclick="insertEmoji('👻')">👻</button>
+        <button class="emoji" type="button" onclick="insertEmoji('💀')">💀</button>
+        <button class="emoji" type="button" onclick="insertEmoji('🐱')">🐱</button>
+        <button class="emoji" type="button" onclick="insertEmoji('🐶')">🐶</button>
       </div>
     </div>
   </main>
+
 </div>
 
 <script>
-  // Function to open chat and set receiver_id dynamically
-  function openChat(userId) {
-    // Set the receiver_id in the form
+  function openChat(userId)
+   {
     document.getElementById('receiver_id').value = userId;
-
-    // Fetch and display the messages for this chat
     fetchMessages(userId);
-  }
+   }
 
-  // Fetch messages from the server and display them
-  function fetchMessages(userId) {
-    fetch(`../PHP/get_messages.php?user_id=${userId}`)
-      .then(response => response.json())
-      .then(messages => {
-        const messageContainer = document.getElementById('messageContainer');
-        messageContainer.innerHTML = '';  // Clear current messages
+ 
+  function fetchMessages(userId)
+  {
+  fetch(`../PHP/get_messages.php?user_id=${userId}`)
+    .then(response => response.json())
+    .then(messages => {
+      const messageContainer = document.getElementById('messageContainer');
+      messageContainer.innerHTML = ''; 
+      messages.forEach(message =>
+       {
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('message');
+        messageElement.classList.add(message.sender_id == <?php echo $loggedInUserId; ?> ? 'sent' : 'received');
+        messageElement.innerHTML = `<p>${message.message}</p>`;
 
-        messages.forEach(message => {
-          const messageElement = document.createElement('div');
-          messageElement.classList.add(message.sender_id == <?php echo $loggedInUserId; ?> ? 'sent' : 'received');
-          messageElement.innerHTML = `<p>${message.message}</p>`;
+        if (message.image) {
+          const img = document.createElement('img');
+          img.src = `../uploads/${message.image}`;
+          img.classList.add('chat-image');
+          messageElement.appendChild(img);
+        }
 
-          // If the message contains an image
-          if (message.image) {
-            const img = document.createElement('img');
-            img.src = `../uploads/${message.image}`;
-            img.classList.add('chat-image');
-            messageElement.appendChild(img);
-          }
+        messageContainer.appendChild(messageElement);
+      });
+      scrollToBottom();
+    })
+    .catch(error => console.error('Error fetching messages:', error));
+ }
 
-          messageContainer.appendChild(messageElement);
-        });
-
-        // Scroll to the bottom of the chat
-        scrollToBottom();
-      })
-      .catch(error => console.error('Error fetching messages:', error));
-  }
-
-  // Handle form submission with AJAX
-  document.getElementById('messageForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent the default form submission
-
-    const formData = new FormData(this); // Get the form data
-
-    // Send the form data via AJAX
+//ajax
+  document.getElementById('messageForm').addEventListener('submit', function(event) 
+  {
+    event.preventDefault(); 
+    const formData = new FormData(this);
     fetch('../PHP/send_message.php', {
       method: 'POST',
       body: formData,
     })
     .then(response => response.text())
-    .then(data => {
-      // After sending the message, fetch updated messages
+    .then(data => 
+    {
       const receiverId = document.getElementById('receiver_id').value;
       fetchMessages(receiverId);
-
-      // Optionally, clear the input field after sending the message
       document.getElementById('messageInput').value = '';
     })
     .catch(error => console.error('Error sending message:', error));
   });
 
-  // Optional: Automatically scroll to the bottom of the chat window
-  function scrollToBottom() {
+  function scrollToBottom()
+   {
     const messageContainer = document.getElementById('messageContainer');
     messageContainer.scrollTop = messageContainer.scrollHeight;
   }
 
-  // Ensure scroll position is at the bottom when messages are loaded
   window.onload = scrollToBottom;
 
-  // Toggle Emoji Picker visibility
-  function toggleEmojiPicker() {
+  function toggleEmojiPicker()
+  {
     const picker = document.getElementById('emojiPicker');
     picker.style.display = (picker.style.display === 'none' || picker.style.display === '') ? 'block' : 'none';
   }
 
-  // Insert emoji into the message input
-  function insertEmoji(emoji) {
+  function insertEmoji(emoji) 
+  {
     const messageInput = document.getElementById('messageInput');
-    messageInput.value += emoji; // Append emoji to input field
-    toggleEmojiPicker(); // Close the picker
+    messageInput.value += emoji; 
+    toggleEmojiPicker();
   }
 </script>
 </body>
