@@ -2,6 +2,9 @@
 
 ChatBox is a simple messaging web application that allows users to register, log in, and communicate with each other. It features real-time-like messaging capabilities without using WebSockets, with support for emojis and image uploads.
 
+## Screenshots
+![CHATBOX LOGIN PAGE](./GITPIC.png)
+
 ## Pages
 
 - **Home Landing Page**: Introduction and navigation to login or signup.
