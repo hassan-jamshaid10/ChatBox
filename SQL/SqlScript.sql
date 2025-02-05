@@ -8,7 +8,6 @@ CREATE TABLE users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Creating the 'messages' table
 CREATE TABLE messages (
     id INT(11) AUTO_INCREMENT PRIMARY KEY,
     sender_id INT(11) NOT NULL,
