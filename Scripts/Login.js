@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function()
               passwordInput.type = "password"; 
               this.textContent = "👁️"; 
           }
-      });
+      });//abc
   });
 
   const form = document.querySelector('form');
