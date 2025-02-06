@@ -10,7 +10,7 @@
 <body>
 <?php
 session_start();
-$conn = new mysqli("localhost", "root", "", "ChatBox");
+ $conn = new mysqli("localhost", "root", "", "ChatBox");
 if ($conn->connect_error) die("Connection failed: " . $conn->connect_error);
 $loggedInUserId = $_SESSION['user_id']; 
 $usersResult = $conn->query("SELECT id, username FROM users WHERE id != $loggedInUserId");
